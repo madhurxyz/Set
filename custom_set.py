@@ -14,6 +14,8 @@ class Set(HashTable):
         return self.hash.length()
 
     def contains(self, item):
-        return self.hash.contains(self, key)
+        return self.hash.contains(item)
 
-    
+    def add(self, item):
+        if not self.hash.contains(item):
+            self.hash.set(item, None)
