@@ -48,10 +48,25 @@ class HashTable(object):
                 return b.data[1]
         raise KeyError('Key is not present in the HashTable')
 
+    def resize(self):
+        old_buckets = self.buckets
+        self.buckets = [LinkedList() for i in range(len(self.buckets)*2)]
+
+        for bucket in self.buckets:
+            for item in bucket:
+                self.set(item.key, item.value)
+
+
     #Best Case is Omega(1)
     #Worst Case is O(n)
     def set(self, key, value):
         """Insert or update the given key with its associated value"""
+
+        load_factor = self.length()/self.bucket_size
+
+        if load_factor > 0.75:
+            self.resize()
+
         index = self._bucket_index(key)
         bucket = self.buckets[index]
         for b in bucket:
