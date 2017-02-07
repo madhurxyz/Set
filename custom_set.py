@@ -12,3 +12,8 @@ class Set(HashTable):
 
     def length(self):
         return self.hash.length()
+
+    def contains(self, item):
+        return self.hash.contains(self, key)
+
+    
