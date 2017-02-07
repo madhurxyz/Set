@@ -19,3 +19,9 @@ class Set(HashTable):
     def add(self, item):
         if not self.hash.contains(item):
             self.hash.set(item, None)
+            
+    def remove(self,item):
+        if not self.hash.contains(item):
+            raise KeyError
+        self.hash.delete(item)
+        return item
